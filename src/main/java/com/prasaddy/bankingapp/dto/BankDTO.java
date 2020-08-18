@@ -1,8 +1,11 @@
 package com.prasaddy.bankingapp.dto;
 
+import com.prasaddy.bankingapp.model.BankEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -12,6 +15,7 @@ public class BankDTO {
     private String bankId;
     private String bankName;
     private long routingNumber;
-
+    private AddressDTO address;
+    private Set<BranchDTO> branches;
 
 }

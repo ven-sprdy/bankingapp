@@ -43,7 +43,7 @@ public class BankService {
         });
     }
 
-    public void updateBankDetails(String bankId, BankDTO bankDetails) {
+    public void updateBankDetailsById(String bankId, BankDTO bankDetails) {
         BankEntity oldBankEntity = bankRepository.findById(bankId).orElseThrow(EntityNotFoundException::new);
         BankEntity newBankEntity = modelMapper.map(bankDetails, BankEntity.class);
         BeanUtils.copyProperties(newBankEntity, oldBankEntity);

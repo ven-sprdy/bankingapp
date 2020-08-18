@@ -3,12 +3,19 @@ package com.prasaddy.bankingapp.model;
 import com.prasaddy.bankingapp.utils.UUIDStringGenerator;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.rest.core.annotation.RestResource;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -26,5 +33,15 @@ public class BankEntity {
 
     @Column(name = "routing_number", nullable = false, unique = true)
     private long routingNumber;
+
+    @OneToOne(mappedBy = "bankAddressDetails", cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    @RestResource(path = "bankAddress")
+    private AddressEntity bankAddress;
+
+    @OneToMany(mappedBy = "bank", cascade = CascadeType.ALL)
+    @RestResource(path = "bankBranches")
+    private Set<BranchEntity> branchEntities;
+
 
 }

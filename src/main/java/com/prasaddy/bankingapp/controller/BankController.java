@@ -29,7 +29,7 @@ public class BankController {
     }
 
     @GetMapping(value = "/{bankId}", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public BankDTO getBankDetails(@PathVariable String bankId) {
+    public BankDTO getBankDetailsById(@PathVariable String bankId) {
         return bankService.getBankDetailsById(bankId);
     }
 
@@ -39,8 +39,8 @@ public class BankController {
     }
 
     @PutMapping(value = "/{bankId}", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public void updateBankDetails(@PathVariable String bankId, @RequestBody BankDTO bankDetails) {
-        bankService.updateBankDetails(bankId, bankDetails);
+    public void updateBankDetailsById(@PathVariable String bankId, @RequestBody BankDTO bankDetails) {
+        bankService.updateBankDetailsById(bankId, bankDetails);
     }
 
     @DeleteMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -49,7 +49,7 @@ public class BankController {
     }
 
     @DeleteMapping(value = "/{bankId}", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public void deleteBankDetails(@PathVariable String bankId) {
+    public void deleteBankDetailsById(@PathVariable String bankId) {
         bankService.deleteBankDetailsById(bankId);
     }
 
