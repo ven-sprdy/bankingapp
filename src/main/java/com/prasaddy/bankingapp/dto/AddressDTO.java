@@ -14,7 +14,7 @@ public class AddressDTO {
     private String addressLine2;
     private String city;
     private String state;
-    private int zip;
+    private String zip;
     private BankDTO bank;
     private BranchDTO branch;
 

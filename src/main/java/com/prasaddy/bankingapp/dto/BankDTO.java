@@ -1,6 +1,5 @@
 package com.prasaddy.bankingapp.dto;
 
-import com.prasaddy.bankingapp.model.BankEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

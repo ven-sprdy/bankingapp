@@ -37,7 +37,7 @@ public class AddressEntity {
     private String state;
 
     @Column(name = "zip", nullable = false, length = 5)
-    private int zip;
+    private String zip;
 
     @OneToOne
     @JoinColumn(name = "bank_id")
