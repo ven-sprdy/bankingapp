@@ -14,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import java.util.List;
 import java.util.Set;
 
 @Data
@@ -31,11 +30,11 @@ public class BankEntity {
     @Column(name = "bank_name", nullable = false, unique = true, length = 36)
     private String bankName;
 
-    @Column(name = "routing_number", nullable = false, unique = true)
-    private long routingNumber;
+    @Column(name = "bank_routing_number", nullable = false, unique = true)
+    private long bankRoutingNumber;
 
-    @OneToOne(mappedBy = "bankAddressDetails", cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "bank_address_id", referencedColumnName = "address_id")
     @RestResource(path = "bankAddress")
     private AddressEntity bankAddress;
 

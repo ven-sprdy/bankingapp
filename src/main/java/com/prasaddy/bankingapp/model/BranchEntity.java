@@ -29,15 +29,16 @@ public class BranchEntity {
     @Column(name = "branch_name", nullable = false, length = 36)
     private String branchName;
 
-    @Column(name = "telephone_number", nullable = false, length = 12)
-    private String telephoneNumber;
+    @Column(name = "branch_telephone_number", nullable = false, length = 12)
+    private String branchTelephoneNumber;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "branch_address_id", referencedColumnName = "address_id")
+    @RestResource(path = "branchAddress")
+    private AddressEntity branchAddress;
 
     @ManyToOne
     @JoinColumn(name = "bank_id")
     private BankEntity bank;
-
-    @OneToOne(mappedBy = "branchAddressDetails", cascade = CascadeType.ALL)
-    @RestResource(path = "branchAddress")
-    private AddressEntity branchAddress;
 
 }

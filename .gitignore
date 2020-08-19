@@ -42,3 +42,4 @@ src/main/java/com/prasaddy/bankingapp/model/exam/Exam.java
 src/main/java/com/prasaddy/bankingapp/model/exam/Question.java
 src/main/java/com/prasaddy/bankingapp/model/exam/User.java
 src/main/resources/application.yaml
+src/main/java/com/prasaddy/bankingapp/Library/**

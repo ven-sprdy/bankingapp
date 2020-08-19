@@ -39,12 +39,10 @@ public class AddressEntity {
     @Column(name = "zip", nullable = false, length = 5)
     private String zip;
 
-    @OneToOne
-    @JoinColumn(name = "bank_id")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "bankAddress")
     private BankEntity bankAddressDetails;
 
-    @OneToOne
-    @JoinColumn(name = "branch_id")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "branchAddress")
     private BranchEntity branchAddressDetails;
 
 }

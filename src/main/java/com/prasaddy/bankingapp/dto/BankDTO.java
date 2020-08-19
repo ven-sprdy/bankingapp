@@ -13,8 +13,8 @@ public class BankDTO {
 
     private String bankId;
     private String bankName;
-    private long routingNumber;
-    private AddressDTO address;
+    private long bankRoutingNumber;
+    private AddressDTO bankAddress;
     private Set<BranchDTO> branches;
 
 }
