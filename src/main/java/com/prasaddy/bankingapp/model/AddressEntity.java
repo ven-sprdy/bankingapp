@@ -4,13 +4,10 @@ import com.prasaddy.bankingapp.utils.UUIDStringGenerator;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Data
@@ -38,11 +35,5 @@ public class AddressEntity {
 
     @Column(name = "zip", nullable = false, length = 5)
     private String zip;
-
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "bankAddress")
-    private BankEntity bankAddressDetails;
-
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "branchAddress")
-    private BranchEntity branchAddressDetails;
 
 }

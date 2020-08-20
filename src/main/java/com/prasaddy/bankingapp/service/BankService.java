@@ -30,7 +30,7 @@ public class BankService {
         return modelMapper.map(bankEntity, BankDTO.class);
     }
 
-    public void createBanksDetails(List<BankDTO> bankDetails) {
+    public void createBanks(List<BankDTO> bankDetails) {
         bankDetails.forEach(bank -> {
             BankEntity bankEntity = modelMapper.map(bank, BankEntity.class);
             bankRepository.save(bankEntity);

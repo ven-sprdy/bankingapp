@@ -3,7 +3,6 @@ package com.prasaddy.bankingapp.model;
 import com.prasaddy.bankingapp.utils.UUIDStringGenerator;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -36,7 +35,6 @@ public class BankEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "bank_address_id", referencedColumnName = "address_id", nullable = false)
-    @RestResource(path = "bankAddress")
     private AddressEntity bankAddress;
 
 }

@@ -5,7 +5,6 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -37,12 +36,11 @@ public class BranchEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "branch_address_id", referencedColumnName = "address_id", nullable = false)
-    @RestResource(path = "branchAddress")
     private AddressEntity branchAddress;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bank_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private BankEntity bankDetails;
+    private BankEntity bank;
 
 }
