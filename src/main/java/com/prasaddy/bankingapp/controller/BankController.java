@@ -3,6 +3,8 @@ package com.prasaddy.bankingapp.controller;
 import com.prasaddy.bankingapp.dto.BankDTO;
 import com.prasaddy.bankingapp.service.BankService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/api/banks")
@@ -24,8 +25,8 @@ public class BankController {
     private BankService bankService;
 
     @GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
-    public List<BankDTO> getAllBankDetails() {
-        return bankService.getAllBankDetails();
+    public Page<BankDTO> getAllBankDetails(Pageable pageable) {
+        return bankService.getAllBankDetails(pageable);
     }
 
     @GetMapping(value = "/{bankId}", produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -34,7 +35,7 @@ public class BankController {
     }
 
     @PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public void createBankDetails(@RequestBody Set<BankDTO> bankDetails) {
+    public void createBankDetails(@RequestBody List<BankDTO> bankDetails) {
         bankService.createBanksDetails(bankDetails);
     }
 

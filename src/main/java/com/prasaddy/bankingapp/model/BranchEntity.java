@@ -3,6 +3,8 @@ package com.prasaddy.bankingapp.model;
 import com.prasaddy.bankingapp.utils.UUIDStringGenerator;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.CascadeType;
@@ -39,7 +41,8 @@ public class BranchEntity {
     private AddressEntity branchAddress;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bank_id")
+    @JoinColumn(name = "bank_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private BankEntity bankDetails;
 
 }
