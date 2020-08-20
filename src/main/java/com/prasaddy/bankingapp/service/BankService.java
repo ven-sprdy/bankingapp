@@ -11,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.List;
 
 @Service
 public class BankService {
@@ -22,7 +21,7 @@ public class BankService {
     private final ModelMapper modelMapper = new ModelMapper();
 
     public Page<BankDTO> getAllBankDetails(Pageable pageable) {
-        return bankRepository.findAll(pageable).map((object -> modelMapper.map(object, BankDTO.class)));
+        return bankRepository.findAll(pageable).map((bank -> modelMapper.map(bank, BankDTO.class)));
     }
 
     public BankDTO getBankDetailsById(String bankId) {
@@ -30,11 +29,9 @@ public class BankService {
         return modelMapper.map(bankEntity, BankDTO.class);
     }
 
-    public void createBanks(List<BankDTO> bankDetails) {
-        bankDetails.forEach(bank -> {
-            BankEntity bankEntity = modelMapper.map(bank, BankEntity.class);
+    public void createBank(BankDTO bankDetails) {
+            BankEntity bankEntity = modelMapper.map(bankDetails, BankEntity.class);
             bankRepository.save(bankEntity);
-        });
     }
 
     public void updateBankDetailsById(String bankId, BankDTO bankDetails) {

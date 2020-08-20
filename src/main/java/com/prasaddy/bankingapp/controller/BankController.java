@@ -35,8 +35,8 @@ public class BankController {
     }
 
     @PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public void createBanksDetails(@RequestBody List<BankDTO> bankDetails) {
-        bankService.createBanks(bankDetails);
+    public void createBanksDetails(@RequestBody BankDTO bankDetails) {
+        bankService.createBank(bankDetails);
     }
 
     @PutMapping(value = "/{bankId}", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
