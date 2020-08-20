@@ -15,7 +15,5 @@ public class AddressDTO {
     private String city;
     private String state;
     private String zip;
-    private BankDTO bank;
-    private BranchDTO branch;
 
 }
