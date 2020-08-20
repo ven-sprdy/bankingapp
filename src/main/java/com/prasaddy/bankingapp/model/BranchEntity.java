@@ -8,6 +8,7 @@ import org.springframework.data.rest.core.annotation.RestResource;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -33,12 +34,12 @@ public class BranchEntity {
     private String branchTelephoneNumber;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "branch_address_id", referencedColumnName = "address_id")
+    @JoinColumn(name = "branch_address_id", referencedColumnName = "address_id", nullable = false)
     @RestResource(path = "branchAddress")
     private AddressEntity branchAddress;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bank_id")
-    private BankEntity bank;
+    private BankEntity bankDetails;
 
 }
