@@ -1,5 +1,6 @@
 package com.prasaddy.bankingapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.prasaddy.bankingapp.utils.UUIDStringGenerator;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
@@ -39,7 +40,7 @@ public class Branch {
     private Address branchAddress;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "bank_id", nullable = false, referencedColumnName = "bank_id")
+    @JoinColumn(name = "bank_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Bank bank;
 

@@ -2,10 +2,12 @@ package com.prasaddy.bankingapp.service;
 
 import com.prasaddy.bankingapp.dto.BankDTO;
 import com.prasaddy.bankingapp.dto.BranchDTO;
+import com.prasaddy.bankingapp.model.Bank;
 import com.prasaddy.bankingapp.model.Branch;
 import com.prasaddy.bankingapp.repository.BankRepository;
 import com.prasaddy.bankingapp.repository.BranchRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BranchService {
@@ -37,7 +40,21 @@ public class BranchService {
     }
 
     public Page<BranchDTO> findBranchesByBankId(String bankId, Pageable pageable) {
-        return null;
+        return branchRepository.findByBankBankId(bankId, pageable).map(branch -> modelMapper.map(branch, BranchDTO.class));
+    }
+
+    public void updateBranchById(String bankId, String branchId, BranchDTO branchDTO) {
+        Bank bank = bankRepository.findById(bankId).orElseThrow(EntityNotFoundException::new);
+        Branch oldBranch = branchRepository.findById(branchId).orElseThrow(EntityNotFoundException::new);
+        Branch newBranch = modelMapper.map(branchDTO, Branch.class);
+        newBranch.setBranchId(oldBranch.getBranchId());
+        newBranch.setBank(bank);
+        branchRepository.save(newBranch);
+    }
+
+    public void deleteBranchById(String bankId, String branchId) {
+        Branch branch = branchRepository.findByBranchIdAndBankBankId(branchId, bankId).orElseThrow(EntityNotFoundException::new);
+        branchRepository.delete(branch);
     }
 
 }
