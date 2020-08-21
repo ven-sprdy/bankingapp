@@ -1,7 +1,7 @@
 package com.prasaddy.bankingapp.service;
 
 import com.prasaddy.bankingapp.dto.BankDTO;
-import com.prasaddy.bankingapp.model.BankEntity;
+import com.prasaddy.bankingapp.model.Bank;
 import com.prasaddy.bankingapp.repository.BankRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
@@ -25,20 +25,20 @@ public class BankService {
     }
 
     public BankDTO getBankDetailsById(String bankId) {
-        BankEntity bankEntity = bankRepository.findById(bankId).orElseThrow(EntityNotFoundException::new);
-        return modelMapper.map(bankEntity, BankDTO.class);
+        Bank bank = bankRepository.findById(bankId).orElseThrow(EntityNotFoundException::new);
+        return modelMapper.map(bank, BankDTO.class);
     }
 
-    public void createBank(BankDTO bankDetails) {
-            BankEntity bankEntity = modelMapper.map(bankDetails, BankEntity.class);
-            bankRepository.save(bankEntity);
+    public void createBank(BankDTO bankDTO) {
+            Bank bank = modelMapper.map(bankDTO, Bank.class);
+            bankRepository.save(bank);
     }
 
-    public void updateBankDetailsById(String bankId, BankDTO bankDetails) {
-        BankEntity oldBankEntity = bankRepository.findById(bankId).orElseThrow(EntityNotFoundException::new);
-        BankEntity newBankEntity = modelMapper.map(bankDetails, BankEntity.class);
-        BeanUtils.copyProperties(newBankEntity, oldBankEntity);
-        bankRepository.save(newBankEntity);
+    public void updateBankDetailsById(String bankId, BankDTO bankDTO) {
+        Bank oldBank = bankRepository.findById(bankId).orElseThrow(EntityNotFoundException::new);
+        Bank newBank = modelMapper.map(bankDTO, Bank.class);
+        BeanUtils.copyProperties(newBank, oldBank);
+        bankRepository.save(newBank);
     }
 
     public void deleteAllBankDetails() {

@@ -35,13 +35,13 @@ public class BankController {
     }
 
     @PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public void createBanksDetails(@RequestBody BankDTO bankDetails) {
-        bankService.createBank(bankDetails);
+    public void createBanksDetails(@RequestBody BankDTO bankDTO) {
+        bankService.createBank(bankDTO);
     }
 
     @PutMapping(value = "/{bankId}", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public void updateBankDetailsById(@PathVariable String bankId, @RequestBody BankDTO bankDetails) {
-        bankService.updateBankDetailsById(bankId, bankDetails);
+    public void updateBankDetailsById(@PathVariable String bankId, @RequestBody BankDTO bankDTO) {
+        bankService.updateBankDetailsById(bankId, bankDTO);
     }
 
     @DeleteMapping(produces = { MediaType.APPLICATION_JSON_VALUE })

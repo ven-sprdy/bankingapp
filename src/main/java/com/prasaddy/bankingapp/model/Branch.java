@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "branch")
-public class BranchEntity {
+public class Branch {
 
     @Id
     @GeneratedValue(generator = UUIDStringGenerator.generatorName)
@@ -36,11 +36,11 @@ public class BranchEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "branch_address_id", referencedColumnName = "address_id", nullable = false)
-    private AddressEntity branchAddress;
+    private Address branchAddress;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bank_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "bank_id", nullable = false, referencedColumnName = "bank_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private BankEntity bank;
+    private Bank bank;
 
 }

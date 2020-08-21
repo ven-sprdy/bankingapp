@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "bank")
-public class BankEntity {
+public class Bank {
 
     @Id
     @GeneratedValue(generator = UUIDStringGenerator.generatorName)
@@ -35,6 +35,6 @@ public class BankEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "bank_address_id", referencedColumnName = "address_id", nullable = false)
-    private AddressEntity bankAddress;
+    private Address bankAddress;
 
 }

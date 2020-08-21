@@ -1,7 +1,7 @@
 package com.prasaddy.bankingapp.service;
 
 import com.prasaddy.bankingapp.dto.AddressDTO;
-import com.prasaddy.bankingapp.model.AddressEntity;
+import com.prasaddy.bankingapp.model.Address;
 import com.prasaddy.bankingapp.repository.AddressRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.Set;
 
 @Service
 public class AddressService {
@@ -20,22 +19,20 @@ public class AddressService {
     private final ModelMapper modelMapper = new ModelMapper();
 
     public AddressDTO getAddressById(String addressId) {
-        AddressEntity addressEntity = addressRepository.findById(addressId).orElseThrow(EntityNotFoundException::new);
-        return modelMapper.map(addressEntity, AddressDTO.class);
+        Address address = addressRepository.findById(addressId).orElseThrow(EntityNotFoundException::new);
+        return modelMapper.map(address, AddressDTO.class);
     }
 
-    public void createAddresses(Set<AddressDTO> addressesDetails) {
-        addressesDetails.forEach(address -> {
-            AddressEntity addressEntity = modelMapper.map(address, AddressEntity.class);
-            addressRepository.save(addressEntity);
-        });
+    public void createAddresses(AddressDTO addressDTO) {
+        Address address = modelMapper.map(addressDTO, Address.class);
+        addressRepository.save(address);
     }
 
-    public void updateAddressById(String addressId, AddressDTO address) {
-        AddressEntity oldAddressEntity = addressRepository.findById(addressId).orElseThrow(EntityNotFoundException::new);
-        AddressEntity newAddressEntity = modelMapper.map(address, AddressEntity.class);
-        BeanUtils.copyProperties(newAddressEntity, oldAddressEntity);
-        addressRepository.save(newAddressEntity);
+    public void updateAddressById(String addressId, AddressDTO addressDTO) {
+        Address oldAddress = addressRepository.findById(addressId).orElseThrow(EntityNotFoundException::new);
+        Address newAddress = modelMapper.map(addressDTO, Address.class);
+        BeanUtils.copyProperties(newAddress, oldAddress);
+        addressRepository.save(newAddress);
     }
 
     public void deleteAllAddresses() {

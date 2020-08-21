@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "address")
-public class AddressEntity {
+public class Address {
 
     @Id
     @GeneratedValue(generator = UUIDStringGenerator.generatorName)

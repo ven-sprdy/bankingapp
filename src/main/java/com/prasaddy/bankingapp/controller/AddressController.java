@@ -28,13 +28,13 @@ public class AddressController {
     }
 
     @PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public void createAddresses(@RequestBody Set<AddressDTO> addresses) {
-        addressService.createAddresses(addresses);
+    public void createAddresses(@RequestBody AddressDTO addressDTO) {
+        addressService.createAddresses(addressDTO);
     }
 
     @PutMapping(value = "/{addressId}", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public void updateBankDetails(@PathVariable String bankId, @RequestBody AddressDTO address) {
-        addressService.updateAddressById(bankId, address);
+    public void updateBankDetails(@PathVariable String bankId, @RequestBody AddressDTO addressDTO) {
+        addressService.updateAddressById(bankId, addressDTO);
     }
 
     @DeleteMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
