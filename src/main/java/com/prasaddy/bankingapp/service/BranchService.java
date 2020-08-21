@@ -48,6 +48,7 @@ public class BranchService {
         Branch oldBranch = branchRepository.findById(branchId).orElseThrow(EntityNotFoundException::new);
         Branch newBranch = modelMapper.map(branchDTO, Branch.class);
         newBranch.setBranchId(oldBranch.getBranchId());
+        newBranch.getBranchAddress().setAddressId(oldBranch.getBranchAddress().getAddressId());
         newBranch.setBank(bank);
         branchRepository.save(newBranch);
     }

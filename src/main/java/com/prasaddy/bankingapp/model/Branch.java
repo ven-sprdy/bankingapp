@@ -1,6 +1,5 @@
 package com.prasaddy.bankingapp.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.prasaddy.bankingapp.utils.UUIDStringGenerator;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;

@@ -2,6 +2,7 @@ package com.prasaddy.bankingapp.service;
 
 import com.prasaddy.bankingapp.dto.BankDTO;
 import com.prasaddy.bankingapp.model.Bank;
+import com.prasaddy.bankingapp.repository.AddressRepository;
 import com.prasaddy.bankingapp.repository.BankRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
@@ -17,6 +18,9 @@ public class BankService {
 
     @Autowired
     private BankRepository bankRepository;
+
+    @Autowired
+    private AddressRepository addressRepository;
 
     private final ModelMapper modelMapper = new ModelMapper();
 
@@ -37,6 +41,7 @@ public class BankService {
     public void updateBankDetailsById(String bankId, BankDTO bankDTO) {
         Bank oldBank = bankRepository.findById(bankId).orElseThrow(EntityNotFoundException::new);
         Bank newBank = modelMapper.map(bankDTO, Bank.class);
+        newBank.getBankAddress().setAddressId(oldBank.getBankAddress().getAddressId());
         newBank.setBankId(oldBank.getBankId());
         bankRepository.save(newBank);
     }
