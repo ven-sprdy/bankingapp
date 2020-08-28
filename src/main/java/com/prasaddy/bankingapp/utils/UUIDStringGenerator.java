@@ -13,7 +13,7 @@ public class UUIDStringGenerator extends UUIDGenerator {
 
     @Override
     public Serializable generate(SharedSessionContractImplementor session, Object object) throws HibernateException {
-        return UUID.randomUUID().toString();
+        return UUID.randomUUID();
     }
 
 }

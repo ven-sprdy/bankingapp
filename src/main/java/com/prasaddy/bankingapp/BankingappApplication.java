@@ -8,6 +8,9 @@ public class BankingappApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BankingappApplication.class, args);
+//		ConfigurableApplicationContext configurableApplicationContext = SpringApplication.run(BankingappApplication.class, args);
+//		SocialAccountRepository socialAccountRepository = configurableApplicationContext.getBean(SocialAccountRepository.class);
+//		SocialProfileRepository socialProfileRepository = configurableApplicationContext.getBean(SocialProfileRepository.class);
 	}
 
 }
