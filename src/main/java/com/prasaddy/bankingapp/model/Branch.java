@@ -1,6 +1,5 @@
 package com.prasaddy.bankingapp.model;
 
-import com.prasaddy.bankingapp.utils.UUIDStringGenerator;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
@@ -14,8 +13,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.UUID;
 
 @Data
 @Entity
@@ -23,10 +24,10 @@ import javax.persistence.Table;
 public class Branch {
 
     @Id
-    @GeneratedValue(generator = UUIDStringGenerator.generatorName)
-    @GenericGenerator(name = UUIDStringGenerator.generatorName, strategy = "com.prasaddy.bankingapp.utils.UUIDStringGenerator")
-    @Column(name = "branch_id", length = 36)
-    private String branchId;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "branch_id", columnDefinition = "BINARY(16)")
+    private UUID branchId;
 
     @Column(name = "branch_name", nullable = false, length = 36)
     private String branchName;
@@ -35,7 +36,8 @@ public class Branch {
     private String branchTelephoneNumber;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "branch_address_id", referencedColumnName = "address_id", nullable = false)
+    @JoinColumn(name = "branch_address_id")
+    @MapsId
     private Address branchAddress;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

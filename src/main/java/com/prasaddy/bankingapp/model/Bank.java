@@ -35,7 +35,7 @@ public class Bank {
     @Column(name = "bank_routing_number", nullable = false, unique = true)
     private long bankRoutingNumber;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
     @MapsId
     @JoinColumn(name = "bank_id", referencedColumnName = "address_id")
     private Address bankAddress;

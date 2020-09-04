@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/banks")
@@ -24,22 +25,22 @@ public class BranchController {
     private BranchService branchService;
 
     @GetMapping("/{bankId}/branches")
-    public Page<BranchDTO> getAllBranchesByBankId(@PathVariable String bankId, Pageable pageable) {
+    public Page<BranchDTO> getAllBranchesByBankId(@PathVariable UUID bankId, Pageable pageable) {
         return branchService.findBranchesByBankId(bankId, pageable);
     }
 
     @PostMapping("/{bankId}/branches")
-    public void createBranches(@PathVariable String bankId, @RequestBody List<BranchDTO> branchDTOS) {
-        branchService.createBranches(bankId, branchDTOS);
+    public List<BranchDTO> createBranches(@PathVariable UUID bankId, @RequestBody List<BranchDTO> branchDTOS) {
+        return branchService.createBranches(bankId, branchDTOS);
     }
 
     @PutMapping("/{bankId}/branches/{branchId}")
-    public void updateBranchById(@PathVariable String bankId, @PathVariable String branchId, @RequestBody BranchDTO branchDTO) {
-        branchService.updateBranchById(bankId, branchId, branchDTO);
+    public BranchDTO updateBranchById(@PathVariable UUID bankId, @PathVariable UUID branchId, @RequestBody BranchDTO branchDTO) {
+        return branchService.updateBranchById(bankId, branchId, branchDTO);
     }
 
     @DeleteMapping("/{bankId}/branches/{branchId}")
-    public void deleteBranchById(@PathVariable String bankId, @PathVariable String branchId) {
+    public void deleteBranchById(@PathVariable UUID bankId, @PathVariable UUID branchId) {
         branchService.deleteBranchById(bankId, branchId);
     }
 

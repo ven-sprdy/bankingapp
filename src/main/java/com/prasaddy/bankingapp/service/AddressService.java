@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.UUID;
 
 @Service
 public class AddressService {
@@ -18,28 +19,30 @@ public class AddressService {
 
     private final ModelMapper modelMapper = new ModelMapper();
 
-    public AddressDTO getAddressById(String addressId) {
+    public AddressDTO getAddressById(UUID addressId) {
         Address address = addressRepository.findById(addressId).orElseThrow(EntityNotFoundException::new);
         return modelMapper.map(address, AddressDTO.class);
     }
 
-    public void createAddresses(AddressDTO addressDTO) {
+    public AddressDTO createAddresses(AddressDTO addressDTO) {
         Address address = modelMapper.map(addressDTO, Address.class);
-        addressRepository.save(address);
+        address = addressRepository.save(address);
+        return modelMapper.map(address, AddressDTO.class);
     }
 
-    public void updateAddressById(String addressId, AddressDTO addressDTO) {
+    public AddressDTO updateAddressById(UUID addressId, AddressDTO addressDTO) {
         Address oldAddress = addressRepository.findById(addressId).orElseThrow(EntityNotFoundException::new);
         Address newAddress = modelMapper.map(addressDTO, Address.class);
         BeanUtils.copyProperties(newAddress, oldAddress);
-        addressRepository.save(newAddress);
+        newAddress = addressRepository.save(newAddress);
+        return modelMapper.map(newAddress, AddressDTO.class);
     }
 
     public void deleteAllAddresses() {
         addressRepository.deleteAll();
     }
 
-    public void deleteAddressById(String bankId) {
+    public void deleteAddressById(UUID bankId) {
         addressRepository.deleteById(bankId);
     }
 

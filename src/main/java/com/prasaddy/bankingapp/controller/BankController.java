@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/banks")
 public class BankController {
@@ -23,23 +26,23 @@ public class BankController {
     private BankService bankService;
 
     @GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
-    public Page<BankDTO> getAllBankDetails(Pageable pageable) {
-        return bankService.getAllBankDetails(pageable);
+    public List<BankDTO> getAllBankDetails() {
+        return bankService.getAllBankDetails();
     }
 
     @GetMapping(value = "/{bankId}", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public BankDTO getBankDetailsById(@PathVariable String bankId) {
+    public BankDTO getBankDetailsById(@PathVariable UUID bankId) {
         return bankService.getBankDetailsById(bankId);
     }
 
     @PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public void createBanksDetails(@RequestBody BankDTO bankDTO) {
-        bankService.createBank(bankDTO);
+    public BankDTO createBanksDetails(@RequestBody BankDTO bankDTO) {
+        return bankService.createBank(bankDTO);
     }
 
     @PutMapping(value = "/{bankId}", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public void updateBankDetailsById(@PathVariable String bankId, @RequestBody BankDTO bankDTO) {
-        bankService.updateBankDetailsById(bankId, bankDTO);
+    public BankDTO updateBankDetailsById(@PathVariable UUID bankId, @RequestBody BankDTO bankDTO) {
+        return bankService.updateBankDetailsById(bankId, bankDTO);
     }
 
     @DeleteMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -48,7 +51,7 @@ public class BankController {
     }
 
     @DeleteMapping(value = "/{bankId}", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public void deleteBankDetailsById(@PathVariable String bankId) {
+    public void deleteBankDetailsById(@PathVariable UUID bankId) {
         bankService.deleteBankDetailsById(bankId);
     }
 
