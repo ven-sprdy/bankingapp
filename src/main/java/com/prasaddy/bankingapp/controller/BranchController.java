@@ -26,27 +26,27 @@ public class BranchController {
     @Autowired
     private BranchService branchService;
 
-    @GetMapping("/{bankId}/branches")
+    @GetMapping(value = "/{bankId}/branches")
     public Page<BranchDTO> getAllBranchesByBankId(@PathVariable UUID bankId, Pageable pageable) {
         return branchService.findBranchesByBankId(bankId, pageable);
     }
 
-    @PostMapping("/{bankId}/branches/save")
+    @PostMapping(value = "/{bankId}/branches/save")
     public ResponseEntity<List<BranchDTO>> createBranches(@PathVariable UUID bankId, @RequestBody List<BranchDTO> branchDTOS) {
         return branchService.createBranches(bankId, branchDTOS);
     }
 
-    @PutMapping("/{bankId}/branches/{branchId}/update")
+    @PutMapping(value = "/{bankId}/branches/{branchId}/update")
     public ResponseEntity<BranchDTO> updateBranchById(@PathVariable UUID bankId, @PathVariable UUID branchId, @RequestBody BranchDTO branchDTO) {
         return branchService.updateBranchById(bankId, branchId, branchDTO);
     }
 
-    @DeleteMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
+    @DeleteMapping(value = "/{bankId}/branches/{branchId}/delete-branches", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<String> deleteAllBranchDetails() {
         return branchService.deleteAllBranchDetails();
     }
 
-    @DeleteMapping("/{bankId}/branches/{branchId}/delete")
+    @DeleteMapping(value = "/{bankId}/branches/{branchId}/delete")
     public ResponseEntity<String> deleteBranchById(@PathVariable UUID bankId, @PathVariable UUID branchId) {
         return branchService.deleteBranchById(bankId, branchId);
     }

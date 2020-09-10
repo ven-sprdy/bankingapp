@@ -1,25 +1,17 @@
 package com.prasaddy.bankingapp.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.util.UUID;
+import javax.persistence.Embeddable;
 
 @Data
-@Entity
-@Table(name = "address")
+@NoArgsConstructor
+@AllArgsConstructor
+@Embeddable
 public class Address {
-
-    @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "address_id", columnDefinition = "BINARY(16)")
-    private UUID addressId;
 
     @Column(name = "address_line1", nullable = false, length = 36)
     private String addressLine1;

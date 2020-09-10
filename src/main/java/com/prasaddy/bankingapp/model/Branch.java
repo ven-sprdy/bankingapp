@@ -34,8 +34,7 @@ public class Branch {
     @Column(name = "branch_telephone_number", nullable = false, length = 12)
     private String branchTelephoneNumber;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "branch_address_id", nullable = false)
+    @Column(name = "branch_address", nullable = false)
     private Address branchAddress;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

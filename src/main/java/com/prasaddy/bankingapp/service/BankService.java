@@ -39,7 +39,6 @@ public class BankService {
     public ResponseEntity<BankDTO> updateBankDetailsById(UUID bankId, BankDTO bankDTO) {
         Bank oldBank = bankRepository.findById(bankId).orElseThrow(EntityNotFoundException::new);
         Bank newBank = modelMapper.map(bankDTO, Bank.class);
-        newBank.getBankAddress().setAddressId(oldBank.getBankAddress().getAddressId());
         newBank.setBankId(oldBank.getBankId());
         Bank bank = bankRepository.save(newBank);
         return ResponseEntity.ok(modelMapper.map(bank, BankDTO.class));

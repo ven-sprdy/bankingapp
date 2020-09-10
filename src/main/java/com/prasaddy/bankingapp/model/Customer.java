@@ -36,20 +36,8 @@ public class Customer {
     @Column(nullable = false, unique = true, length = 36)
     private EmailAddress email;
 
-    @Column(name = "address_line1", nullable = false, length = 36)
-    private String addressLine1;
-
-    @Column(name = "address_line2", length = 36)
-    private String addressLine2;
-
-    @Column(name = "city", nullable = false, length = 25)
-    private String city;
-
-    @Column(name = "state", nullable = false, length = 25)
-    private String state;
-
-    @Column(name = "zip", nullable = false, length = 5)
-    private int zip;
+    @Column(name = "customer_address", nullable = false)
+    private Address customerAddress;
 
     @Column(name = "mobile_number", nullable = false, length = 12)
     private String mobileNumber;

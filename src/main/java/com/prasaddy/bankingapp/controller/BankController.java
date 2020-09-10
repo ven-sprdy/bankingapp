@@ -45,7 +45,7 @@ public class BankController {
         return bankService.updateBankDetailsById(bankId, bankDTO);
     }
 
-    @DeleteMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
+    @DeleteMapping(value = "delete-banks", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<String> deleteAllBankDetails() {
         return bankService.deleteAllBankDetails();
     }

@@ -34,8 +34,7 @@ public class Bank {
     @Column(name = "bank_routing_number", nullable = false, unique = true)
     private long bankRoutingNumber;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "bank_address_id", nullable = false)
+    @Column(name = "bank_address", nullable = false)
     private Address bankAddress;
 
 }
