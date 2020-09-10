@@ -5,12 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class BranchDTO {
 
-    private String branchId;
+    private UUID branchId;
     private String branchName;
     private String branchTelephoneNumber;
     private AddressDTO branchAddress;

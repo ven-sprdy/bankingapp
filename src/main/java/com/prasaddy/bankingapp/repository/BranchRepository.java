@@ -6,10 +6,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 public interface BranchRepository extends JpaRepository<Branch, String> {
 
-    Page<Branch> findByBankBankId(String bankId, Pageable pageable);
-    Optional<Branch> findByBranchIdAndBankBankId(String bankId, String branchId);
+    Page<Branch> findByBankBankId(UUID bankId, Pageable pageable);
+    Optional<Branch> findByBranchIdAndBankBankId(UUID bankId, UUID branchId);
 
 }
