@@ -59,6 +59,11 @@ public class BranchService {
         return ResponseEntity.ok(modelMapper.map(branch, BranchDTO.class));
     }
 
+    public ResponseEntity<String> deleteAllBranchDetails() {
+        branchRepository.deleteAll();
+        return ResponseEntity.ok("All branch details deleted.");
+    }
+
     public ResponseEntity<String> deleteBranchById(UUID bankId, UUID branchId) {
         Branch branch = branchRepository.findByBranchIdAndBankBankId(branchId, bankId).orElseThrow(EntityNotFoundException::new);
         branchRepository.delete(branch);
