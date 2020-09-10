@@ -34,7 +34,7 @@ public class AddressController {
         return addressService.createAddress(addressDTO);
     }
 
-    @PutMapping(value = "/{addressId}", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+    @PutMapping(value = "/{addressId}/update", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<AddressDTO> updateBankDetails(@PathVariable UUID addressId, @RequestBody AddressDTO addressDTO) {
         return addressService.updateAddressById(addressId, addressDTO);
     }
@@ -44,7 +44,7 @@ public class AddressController {
         return addressService.deleteAllAddresses();
     }
 
-    @DeleteMapping(value = "/{addressId}", produces = { MediaType.APPLICATION_JSON_VALUE })
+    @DeleteMapping(value = "/{addressId}/delete", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<String> deleteAddressById(@PathVariable UUID addressId) {
         return addressService.deleteAddressById(addressId);
     }

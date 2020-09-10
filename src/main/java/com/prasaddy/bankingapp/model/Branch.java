@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.UUID;
 
 @Data
 @Entity
@@ -23,10 +24,10 @@ import javax.persistence.Table;
 public class Branch {
 
     @Id
-    @GeneratedValue(generator = UUIDStringGenerator.generatorName)
-    @GenericGenerator(name = UUIDStringGenerator.generatorName, strategy = "com.prasaddy.bankingapp.utils.UUIDStringGenerator")
-    @Column(name = "branch_id", length = 36)
-    private String branchId;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "branch_id")
+    private UUID branchId;
 
     @Column(name = "branch_name", nullable = false, length = 36)
     private String branchName;
@@ -34,8 +35,8 @@ public class Branch {
     @Column(name = "branch_telephone_number", nullable = false, length = 12)
     private String branchTelephoneNumber;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "branch_address_id", referencedColumnName = "address_id", nullable = false)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "branch_address_id")
     private Address branchAddress;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
