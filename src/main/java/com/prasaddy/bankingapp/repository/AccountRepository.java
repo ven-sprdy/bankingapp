@@ -1,7 +1,9 @@
 package com.prasaddy.bankingapp.repository;
 
-import com.prasaddy.bankingapp.model.AccountEntity;
+import com.prasaddy.bankingapp.model.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AccountRepository extends JpaRepository<AccountEntity, String> {
+import java.util.UUID;
+
+public interface AccountRepository extends JpaRepository<Account, UUID> {
 }

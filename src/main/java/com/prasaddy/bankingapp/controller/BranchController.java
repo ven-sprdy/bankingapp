@@ -5,6 +5,7 @@ import com.prasaddy.bankingapp.service.BranchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,19 +30,19 @@ public class BranchController {
         return branchService.findBranchesByBankId(bankId, pageable);
     }
 
-    @PostMapping("/{bankId}/branches")
-    public List<BranchDTO> createBranches(@PathVariable UUID bankId, @RequestBody List<BranchDTO> branchDTOS) {
+    @PostMapping("/{bankId}/branches/save")
+    public ResponseEntity<List<BranchDTO>> createBranches(@PathVariable UUID bankId, @RequestBody List<BranchDTO> branchDTOS) {
         return branchService.createBranches(bankId, branchDTOS);
     }
 
-    @PutMapping("/{bankId}/branches/{branchId}")
-    public BranchDTO updateBranchById(@PathVariable UUID bankId, @PathVariable UUID branchId, @RequestBody BranchDTO branchDTO) {
+    @PutMapping("/{bankId}/branches/{branchId}/update")
+    public ResponseEntity<BranchDTO> updateBranchById(@PathVariable UUID bankId, @PathVariable UUID branchId, @RequestBody BranchDTO branchDTO) {
         return branchService.updateBranchById(bankId, branchId, branchDTO);
     }
 
-    @DeleteMapping("/{bankId}/branches/{branchId}")
-    public void deleteBranchById(@PathVariable UUID bankId, @PathVariable UUID branchId) {
-        branchService.deleteBranchById(bankId, branchId);
+    @DeleteMapping("/{bankId}/branches/{branchId}/delete")
+    public ResponseEntity<String> deleteBranchById(@PathVariable UUID bankId, @PathVariable UUID branchId) {
+        return branchService.deleteBranchById(bankId, branchId);
     }
 
 }

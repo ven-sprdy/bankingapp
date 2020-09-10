@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.UUID;
@@ -35,13 +34,12 @@ public class Branch {
     @Column(name = "branch_telephone_number", nullable = false, length = 12)
     private String branchTelephoneNumber;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "branch_address_id")
-    @MapsId
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "branch_address_id", nullable = false)
     private Address branchAddress;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "bank_id", nullable = false)
+    @JoinColumn(name = "bank_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Bank bank;
 

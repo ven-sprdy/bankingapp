@@ -10,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.UUID;
@@ -23,7 +22,7 @@ public class Bank {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "bank_id")
+    @Column(name = "bank_id", columnDefinition = "BINARY(16)")
     private UUID bankId;
 
     @Column(name = "bank_name", nullable = false, unique = true, length = 36)
@@ -35,9 +34,8 @@ public class Bank {
     @Column(name = "bank_routing_number", nullable = false, unique = true)
     private long bankRoutingNumber;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
-    @MapsId
-    @JoinColumn(name = "bank_id", referencedColumnName = "address_id")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "bank_address_id", nullable = false)
     private Address bankAddress;
 
 }

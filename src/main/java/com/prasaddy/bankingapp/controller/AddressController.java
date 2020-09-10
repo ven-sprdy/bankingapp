@@ -4,6 +4,7 @@ import com.prasaddy.bankingapp.dto.AddressDTO;
 import com.prasaddy.bankingapp.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,28 +24,28 @@ public class AddressController {
     private AddressService addressService;
 
     @GetMapping(value = "/{addressId}", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public AddressDTO getAddressById(@PathVariable UUID addressId) {
+    public ResponseEntity<AddressDTO> getAddressById(@PathVariable UUID addressId) {
         return addressService.getAddressById(addressId);
     }
 
-    @PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public AddressDTO createAddresses(@RequestBody AddressDTO addressDTO) {
-        return addressService.createAddresses(addressDTO);
+    @PostMapping(value = "/save", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<AddressDTO> createAddress(@RequestBody AddressDTO addressDTO) {
+        return addressService.createAddress(addressDTO);
     }
 
-    @PutMapping(value = "/{addressId}", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public AddressDTO updateBankDetails(@PathVariable UUID bankId, @RequestBody AddressDTO addressDTO) {
-        return addressService.updateAddressById(bankId, addressDTO);
+    @PutMapping(value = "/{addressId}/update", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<AddressDTO> updateBankDetails(@PathVariable UUID addressId, @RequestBody AddressDTO addressDTO) {
+        return addressService.updateAddressById(addressId, addressDTO);
     }
 
     @DeleteMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
-    public void deleteAllAddresses() {
-        addressService.deleteAllAddresses();
+    public ResponseEntity<String> deleteAllAddresses() {
+        return addressService.deleteAllAddresses();
     }
 
-    @DeleteMapping(value = "/{addressId}", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public void deleteAddressById(@PathVariable UUID addressId) {
-        addressService.deleteAddressById(addressId);
+    @DeleteMapping(value = "/{addressId}/delete", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<String> deleteAddressById(@PathVariable UUID addressId) {
+        return addressService.deleteAddressById(addressId);
     }
 
 }
