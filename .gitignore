@@ -36,10 +36,5 @@ build/
 .mvn/wrapper/MavenWrapperDownloader.java
 mvnw
 mvnw.cmd
-src/main/java/com/prasaddy/bankingapp/model/exam/Alternative.java
-src/main/java/com/prasaddy/bankingapp/model/exam/Attempt.java
-src/main/java/com/prasaddy/bankingapp/model/exam/Exam.java
-src/main/java/com/prasaddy/bankingapp/model/exam/Question.java
-src/main/java/com/prasaddy/bankingapp/model/exam/User.java
 src/main/resources/application.yaml
 src/main/java/com/prasaddy/bankingapp/Library/**
