@@ -1,7 +1,9 @@
 package com.prasaddy.bankingapp.repository;
 
-import com.prasaddy.bankingapp.model.CustomerEntity;
+import com.prasaddy.bankingapp.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CustomerRepository extends JpaRepository<CustomerEntity, String> {
+import java.util.UUID;
+
+public interface CustomerRepository extends JpaRepository<Customer, UUID> {
 }

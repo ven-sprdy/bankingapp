@@ -1,6 +1,5 @@
 package com.prasaddy.bankingapp.model;
 
-import com.prasaddy.bankingapp.utils.UUIDStringGenerator;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
@@ -26,7 +25,7 @@ public class Branch {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "branch_id")
+    @Column(name = "branch_id", columnDefinition = "BINARY(16)")
     private UUID branchId;
 
     @Column(name = "branch_name", nullable = false, length = 36)
@@ -35,12 +34,12 @@ public class Branch {
     @Column(name = "branch_telephone_number", nullable = false, length = 12)
     private String branchTelephoneNumber;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "branch_address_id")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "branch_address_id", nullable = false)
     private Address branchAddress;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "bank_id", nullable = false)
+    @JoinColumn(name = "bank_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Bank bank;
 

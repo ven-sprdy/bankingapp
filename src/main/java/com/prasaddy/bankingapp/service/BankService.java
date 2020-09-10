@@ -1,13 +1,9 @@
 package com.prasaddy.bankingapp.service;
 
-import com.prasaddy.bankingapp.dto.AddressDTO;
 import com.prasaddy.bankingapp.dto.BankDTO;
-import com.prasaddy.bankingapp.model.Address;
 import com.prasaddy.bankingapp.model.Bank;
-import com.prasaddy.bankingapp.repository.AddressRepository;
 import com.prasaddy.bankingapp.repository.BankRepository;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,9 +18,6 @@ public class BankService {
 
     @Autowired
     private BankRepository bankRepository;
-
-    @Autowired
-    private AddressRepository addressRepository;
 
     private final ModelMapper modelMapper = new ModelMapper();
 

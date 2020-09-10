@@ -1,6 +1,5 @@
 package com.prasaddy.bankingapp.model;
 
-import com.prasaddy.bankingapp.utils.UUIDStringGenerator;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -11,17 +10,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @Entity
 @Table(name = "transaction")
-public class TransactionEntity {
+public class Transaction {
 
     @Id
-    @GeneratedValue(generator = UUIDStringGenerator.generatorName)
-    @GenericGenerator(name = UUIDStringGenerator.generatorName, strategy = "com.prasaddy.bankingapp.utils.UUIDStringGenerator")
-    @Column(name = "transaction_id", length = 36)
-    private String transactionId;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "transaction_id", columnDefinition = "BINARY(16)")
+    private UUID transactionId;
 
     @Column(name = "account_number", nullable = false)
     private String accountNumber;
