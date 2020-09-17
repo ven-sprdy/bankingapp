@@ -39,7 +39,6 @@ public class Branch {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "bank_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Bank bank;
 
 }
