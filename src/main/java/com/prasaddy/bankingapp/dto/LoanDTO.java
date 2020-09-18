@@ -1,13 +1,15 @@
 package com.prasaddy.bankingapp.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.prasaddy.bankingapp.model.Branch;
 import com.prasaddy.bankingapp.model.LoanType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -19,6 +21,8 @@ public class LoanDTO {
     private LoanType loanType;
     private BigDecimal loanAmount;
     @JsonIgnore
-    private Branch branch;
+    private BranchDTO branch;
+    @ToString.Exclude
+    private Set<CustomerDTO> customerDTOs = new HashSet<>();
 
 }

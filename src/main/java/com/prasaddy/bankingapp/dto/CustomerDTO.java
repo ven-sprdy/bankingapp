@@ -1,13 +1,12 @@
 package com.prasaddy.bankingapp.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.prasaddy.bankingapp.model.Address;
-import com.prasaddy.bankingapp.model.Branch;
-import com.prasaddy.bankingapp.model.EmailAddress;
-import com.prasaddy.bankingapp.model.Loan;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -28,8 +27,10 @@ public class CustomerDTO {
     private String mobileNumber;
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date dob;
-    private Branch branch;
-    private Set<Loan> loans = new HashSet<>();
-    private Set<Loan> accounts = new HashSet<>();
+    @JsonIgnore
+    private BranchDTO branch;
+    @ToString.Exclude
+    private Set<LoanDTO> loans = new HashSet<>();
+    private Set<AccountDTO> accounts = new HashSet<>();
 
 }

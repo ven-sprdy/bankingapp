@@ -2,6 +2,8 @@ package com.prasaddy.bankingapp.model;
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,6 +37,7 @@ public class Branch {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "bank_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Bank bank;
 
 }

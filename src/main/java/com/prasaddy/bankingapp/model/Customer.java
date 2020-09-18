@@ -2,7 +2,6 @@ package com.prasaddy.bankingapp.model;
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
