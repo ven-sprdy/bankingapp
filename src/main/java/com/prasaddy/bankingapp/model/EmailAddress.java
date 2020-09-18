@@ -13,24 +13,19 @@ import java.util.regex.Pattern;
 @Embeddable
 public class EmailAddress {
 
-    private static final String EMAIL_REGEX = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+    private static final String EMAIL_REGEX = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?!-)(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
     private static final Pattern PATTERN = Pattern.compile(EMAIL_REGEX);
 
-    @Column(name = "email")
-    private String email;
+    @Column(name = "email_address", unique = true)
+    private String emailAddress;
 
     public EmailAddress(String emailAddress) {
         Assert.isTrue(isValid(emailAddress), "Invalid email address!");
-        this.email = emailAddress;
+        this.emailAddress = emailAddress;
     }
 
     public static boolean isValid(String candidate) {
         return candidate != null && PATTERN.matcher(candidate).matches();
     }
-
-//    @Override
-//    public String toString() {
-//        return value;
-//    }
 
 }

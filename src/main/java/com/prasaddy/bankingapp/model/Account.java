@@ -1,8 +1,8 @@
 package com.prasaddy.bankingapp.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,7 +41,8 @@ public class Account {
     private BigDecimal openingBalance;
 
     @Column(name = "account_opening_date", nullable = false)
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "MM/dd/yyyy hh:mm:ss")
     private Date accountOpeningDate;
 
     @ManyToMany(mappedBy = "accounts")
@@ -49,7 +50,7 @@ public class Account {
 
     @ManyToOne
     @JoinColumn(name = "branch_id")
-    private Branch branchId;
+    private Branch branch;
 
 
 }

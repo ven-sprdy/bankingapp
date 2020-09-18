@@ -2,17 +2,16 @@ package com.prasaddy.bankingapp.model;
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -42,8 +41,8 @@ public class Customer {
     @Column(name = "last_name", nullable = false, length = 36)
     private String lastName;
 
-    @Column(nullable = false, unique = true, length = 36)
-    private EmailAddress email;
+    @Column(nullable = false, unique = true)
+    private String emailAddress;
 
     @Column(name = "customer_address", nullable = false)
     private Address customerAddress;
@@ -51,13 +50,10 @@ public class Customer {
     @Column(name = "mobile_number", nullable = false, length = 12)
     private String mobileNumber;
 
-    @Column(name = "dob", nullable = false, length = 10)
+    @Column(name = "dob", nullable = false, length = 12)
     @Temporal(TemporalType.DATE)
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
-
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "bank_id")
-//    private Bank bank;
 
     @OneToOne
     @JoinColumn(name = "branch_id")
@@ -70,5 +66,9 @@ public class Customer {
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "customer_account", joinColumns = @JoinColumn(name = "customer_id"), inverseJoinColumns = @JoinColumn(name = "account_id"))
     private Set<Loan> accounts = new HashSet<>();
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = new EmailAddress(emailAddress).getEmailAddress();
+    }
 
 }
