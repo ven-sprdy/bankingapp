@@ -1,6 +1,8 @@
 package com.prasaddy.bankingapp.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.CascadeType;
@@ -56,15 +58,19 @@ public class Customer {
 
     @OneToOne
     @JoinColumn(name = "branch_id")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Branch branch;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "customer_loan", joinColumns = @JoinColumn(name = "customer_id"), inverseJoinColumns = @JoinColumn(name = "loan_id"))
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<Loan> loans = new HashSet<>();
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "customer_account", joinColumns = @JoinColumn(name = "customer_id"), inverseJoinColumns = @JoinColumn(name = "account_id"))
-    private Set<Loan> accounts = new HashSet<>();
+    private Set<Account> accounts = new HashSet<>();
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = new EmailAddress(emailAddress).getEmailAddress();

@@ -1,6 +1,8 @@
 package com.prasaddy.bankingapp.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
@@ -39,9 +41,13 @@ public class Loan {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "branch_id", nullable = false)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Branch branch;
 
     @ManyToMany(mappedBy = "loans")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<Customer> customers = new HashSet<>();
 
 }

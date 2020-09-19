@@ -6,7 +6,6 @@ import com.prasaddy.bankingapp.model.Address;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -29,7 +28,6 @@ public class CustomerDTO {
     private Date dob;
     @JsonIgnore
     private BranchDTO branch;
-    @ToString.Exclude
     private Set<LoanDTO> loans = new HashSet<>();
     private Set<AccountDTO> accounts = new HashSet<>();
 

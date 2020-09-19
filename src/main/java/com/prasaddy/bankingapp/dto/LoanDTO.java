@@ -5,7 +5,6 @@ import com.prasaddy.bankingapp.model.LoanType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -22,7 +21,7 @@ public class LoanDTO {
     private BigDecimal loanAmount;
     @JsonIgnore
     private BranchDTO branch;
-    @ToString.Exclude
+    @JsonIgnore
     private Set<CustomerDTO> customerDTOs = new HashSet<>();
 
 }
