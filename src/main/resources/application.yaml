@@ -1,0 +1,32 @@
+logging:
+  level:
+    root: warn
+    org:
+      springframework:
+        web: debug
+      hibernate: error
+spring:
+  profiles: dev
+  jpa:
+    database: MYSQL
+    generate-ddl: true
+    properties:
+      hibernate:
+        ddl-auto: create
+    show-sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/bankingapp?serverTimezone=UTC&useLegacyDatetimeCode=false
+    username: admin
+    password: xxxx
+server:
+  port: 9000
+name: dev-YAML
+environment: dev
+
+---
+spring:
+  profiles: prod
+server:
+  port: 9191
+name: prod-YAML
+environment: production

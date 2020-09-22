@@ -36,5 +36,5 @@ build/
 .mvn/wrapper/MavenWrapperDownloader.java
 mvnw
 mvnw.cmd
-src/main/resources/application.yaml
 src/main/java/com/prasaddy/bankingapp/Library/**
+.DS_Store

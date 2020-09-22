@@ -1,10 +1,20 @@
 ```
+brew install mysql
+```
+```
+brew services start mysql
+brew services stop mysql
+```
+```
 brew tap mongodb/brew
 brew install mongodb-community
 ```
 ```
 brew services start mongodb-community
 brew services stop mongodb-community
+```
+```
+Intellij VM options -Dspring.profiles.active=dev
 ```
 ```
 Run below commands for production build jar file
