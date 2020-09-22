@@ -14,7 +14,7 @@ brew services start mongodb-community
 brew services stop mongodb-community
 ```
 ```
-Intellij VM options -Dspring.profiles.active=dev
+Intellij VM options -Dspring.profiles.active=dev -Djasypt.encryptor.password=
 ```
 ```
 Run below commands for production build jar file

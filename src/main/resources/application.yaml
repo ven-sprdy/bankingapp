@@ -5,6 +5,17 @@ logging:
       springframework:
         web: debug
       hibernate: error
+
+---
+name: dev-YAML
+environment: dev
+server:
+  port: 9000
+jasypt:
+  encryptor:
+#    password: ${JASYPT_ENCRYPTOR_PASSWORD:}
+    algorithm: PBEWITHHMACSHA512ANDAES_256
+    iv-generator-classname: org.jasypt.iv.RandomIvGenerator
 spring:
   profiles: dev
   jpa:
@@ -16,13 +27,8 @@ spring:
     show-sql: true
   datasource:
     url: jdbc:mysql://localhost:3306/bankingapp?serverTimezone=UTC&useLegacyDatetimeCode=false
-    username: admin
-    password: xxxx
-server:
-  port: 9000
-name: dev-YAML
-environment: dev
-
+    username: ENC(XO6MoUIV2l4l5iOaIwiPB3bJg4xo0NH+PRGmEYfetjkjlw1BJ3LKxHNCdO0QqT8s)
+    password: ENC(hqW4XqBruRE44QMSQaCfyPeurjk9NrUucZUV3euXnzyL6iiDE8ZQaQJsp0i4dAFw)
 ---
 spring:
   profiles: prod
